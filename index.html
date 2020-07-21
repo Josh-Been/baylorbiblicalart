@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        html, body{
+            margin:0;
+            padding:0;
+            color:#ffffff;
+            background:#0F3325;
+            font-family:"Segoe UI", "Times New Roman", Times, serif;
+        }
+    </style>
+
+    <style>
+        .header{
+            box-sizing:border-box;
+            height:40px;
+            background:#154734;
+            text-align:center;
+        }
+        .header-main{
+            position:relative;
+            font-family:"Times New Roman";
+            font-size:32px;
+            width:100%;
+            height:80px;
+            border-bottom:8px solid #FFB81C;
+            text-align:left;
+        }
+        .header-container{
+            display:inline-block;
+            position:relative;
+            padding-top:9px;
+            width:250px;
+            margin-top:20px;
+            box-shadow:0 0 8px rgba(0, 0, 0, 0.5);
+            margin-bottom:60px;
+        }
+        .header-container:after{
+            content:"";
+            display:block;
+            position:absolute;
+            width:200px;
+            height:7px;
+            background:#FFB81C;
+            top:40px;
+            left:50%;
+            transform:translate(-50%);
+        }
+        .header-container:hover{
+            transform:rotate(1deg);
+            transition:0.1s;
+        }
+        .header-container:before{
+            content:"";
+            display:block;
+            position:absolute;
+            width:230px;
+            height:12px;
+            background:rgba(0, 0, 0, 0.1);
+            top:40px;
+            left:50%;
+            transform:translate(-50%);
+        }
+
+        .header-main-content{
+            display:flex;
+            justify-content:center;
+            margin-left:50%;
+            padding-top:15px;
+            transform:translate(-50%);
+            width:100%;
+        }
+
+        .logo{
+            height:40px;
+            width:auto;
+            margin-right:10px;
+        }
+    </style>
+
+    <style>
+        .container-main{
+            display:flex;
+            justify-content:center;
+            height:calc(100vh - 80px);
+        }
+
+        .container{
+            height:100%;
+            background:#ffffff;
+            text-align:center;
+        }
+        .container:nth-child(even){
+            background:#e0e0e0;
+        }
+
+        .container-data{
+            width:640px;
+            min-width:640px;
+        }
+        .container-image{
+            max-width:640px;
+        }
+    </style>
+
+    <style>
+        .table-entries{
+            display:inline-block;
+            border-collapse:collapse;
+            max-height:calc(100% - 176px);
+            box-shadow:-2px 2px 10px rgba(0, 0, 0, 0.7);
+            overflow-y:scroll;
+            background:#FFB81C;
+            font-size:13px;
+        }
+        .table-entries:hover{
+            outline:2px solid #FFB81C;
+        }
+        .table-entries tbody:hover{
+            position:relative;
+            box-shadow:0 0 10px rgba(0, 0, 0, 0.5);
+            height:45px;
+            z-index:1;
+        }
+        .table-entries th{
+            box-sizing:border-box;
+            font-weight:normal;
+        }
+        
+        .table-index{
+            position:relative;
+            width:40px;
+            background:#0D2B20;
+        }
+        .table-index:after{
+            content:"";
+            display:block;
+            position:absolute;
+            height:100%;
+            width:2px;
+            left:40px;
+            top:0;
+            background:#FFB81C;
+        }
+        .table-title{
+            width:200px;
+            background:#154734;
+        }
+        .table-data{
+            width:300px;
+            padding:10px;
+            padding-left:20px;
+            padding-right:20px;
+            color:#393939;
+            background:#D9D9D9;
+        }
+
+        .table-entries tbody:nth-child(even) .table-index{
+            background:#113628;
+        }
+        .table-entries tbody:nth-child(even) .table-title{
+            background:#18503B;
+        }
+        .table-entries tbody:nth-child(even) .table-data{
+            background:#E8E8E8;
+        }
+    </style>
+
+    <style>
+        .source-image{
+            position:relative;
+            box-sizing:border-box;
+            object-fit:contain;
+            height:calc(100% - 176px);
+            width:calc(100% - 100px);
+        }
+    </style>
+
+    <style>
+        @media only screen and (max-height: 750px) {
+            .table-entries tbody:hover{
+                height:40px;
+            }
+            .table-index{
+                width:35px;
+            }
+            .table-index:after{
+                left:35px;
+            }
+            .table-data{
+                padding:8px;
+            }
+        }
+
+        @media only screen and (max-width: 900px) {
+            .header-main{
+                text-align:center;
+                padding:0;
+            }
+            .container-image{
+                display:none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header header-main">
+        <span class="header-main-content">
+            <img class="logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAACQCAYAAADDc689AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsIAAA7CARUoSoAAAASvSURBVHhe7d3Na1RnFMfxO0nMmOqiFRUXXTWNgiLNQtE/wIiIm5K6aKiIYqEiaKDdudAoghu1Ecmi2RWlL0ihFEVEF62LEFFQsda31KSGSmg1CtaooOkcOaEpTGbu68w5v/v7QPB5sjAz853nvszNTAqTZ96dDOh/CutGCzp0r0H/pWnkSX+h/737OnWNK7gK76uZK7gK7wuAgUPwHJmBQ/IamYEj8BiZgSPyFpmBY/AUmYFj8hKZgRPwEJmBE7IemYHBMXAKLK9iBgbHwCmxuoorXikJe6O9XnFJO4rFxyGVFSwPlHz1H1y8X7/lAtKF/ZmksoLL8fTgpbWSYVdwOVOrWqemIa9kHmQp1MgMDI6BwTEwOAYGx8DgGBgcA4NjYHAMDI6BwTGw8vK6eVQMXIIaV+Q+MHJckevA6HFFZhf882Z8ojA578P75hYM98EpsRhXMDA4Bk6B5d8GYeCErP+qDwMn8M314rc6NIuBYzo33Pxb1xdDH+vULAaO4dxw8VbHZ78v1alpDBzDncdNfTo0j4Fj2N7+T+9XBxd369Q0Bo7p0/ZnR77c17Zep2bxpcqEeJoEzvoiYOAUWI7MwOAYOCWnjrVe0qEpmR9kWT0IOdnberZzyYsOnabC4n3N7Qr+aNfQ2qMDDct0CivXm+hdPX/cQI+c+32wRO4dmLtcp3B4kFXS3XPz+g+3i+d1CoWBVefOoTU6hMLA4Op2mlSvV38qncokvU1Z/t9xcQWDY2BwDAyOgcExMDgGBsfA4BgYHAODY2BwDAyOgcExMDgGBsfA4Op2PbiSLK/LVlKPn3viUNvXXcsmNul0RnHvE1ewE/Lki/MEZGCVxtaqFqKGZuASL3Gnmwp9+ljrFf1WWSb3wbWUZtws98GVVPq5uV7BHlduVLkNnIe4opCXO5q1vetGG3uC4LVOQ+Mm2ok4cWuBgcExcAosnykwcELWTwMZOAHrcQUDx+QhrmDgGLzEFQwckae4goEj8BZXMHBIHuMKBg7Ba1zBwFV4jisYuALvcQUDl9E7+NYahLiCgdUvI80jElW+uvfchvlQNJPP0qTXqD2tPl4PpkQYGBwDg2NgcAwMjoHBMTA4BgbHwOAYGBwDg2NgcAwMjoHBMTA4BgbHwOAYGBwDg2NgcAwMjoHBMTA4Bq6zYtPrRTrMBGTg7w+3/aRD8zqXvOjQYSYgA29cOrFBh7kHu4n28BGNtbiN0Ptgy5FrddvgD7IsRk7zNu0daG3RYVlm34VnefVZUu2dlPArOO8Y2LG74w3PdTgj02+U5ma6sjBvdDe9gvsuz070zndkYT/FwHTgHbvvHtchTfPdr80ndViV6U30FG6q/3NtrOnJB5uH39ZpVS4CC0YOgqtjjU/aN4+EjivcHEV7+uScLFx+MOth1LjC1WlSXiNfKsVdseXefJ1G4u48OG+RL/7Z9PfKmHGFu8AiL5FLcf9atXV4gU5jcRlYoEceHH0Td6FOY3MbWKBG7hts2bB6W/K4AuYBQjmNSvtJ63oFTycPzI93ij/r1B3545ZZbJGg92Oi78D7XfPnTH7S0hi8o9+qm4lXwfjLV8Gjsaez+j/fc7MGT8Yg+BfrV4jyVbibtAAAAABJRU5ErkJggg==">
+            <span class="title">Baylor Biblical Study</span>
+        </span>
+    </div>
+
+    <div class="container-main">
+        <div class="container container-data">
+            <div class="header header-container">Data Entries</div>
+            <table class="table-entries"></table>
+        </div>
+
+        <div class="container container-image">
+            <div class="header header-container">Source Image</div>
+            <img class="source-image">
+        </div>
+    </div>
+
+    <script>
+        const ENTRY_TITLES = [
+            "Volume",
+            "Book",
+            "Chapter Verse Start",
+            "Chapter Verse End",
+            "Common Theme",
+            "Title",
+            "Uniform Title",
+            "Alt Title",
+            "Publisher",
+            "Publisher Place",
+            "Year Published",
+            "Image Thumbnail",
+            "Image ID Original",
+            "Image ID",
+            "Width x Height",
+            "Image Title",
+            "Artist",
+            "Image Citation",
+            "Book Citation",
+            "Alma Persistent Link",
+            "Notes"
+        ];
+        const DELIMITER = "|";
+
+        const url = window.location.href;
+        let data = url.split(DELIMITER).splice(1);
+        const imageUrl = data.pop();
+
+        const tableEl = document.getElementsByClassName("table-entries")[0];
+        const imageEl = document.getElementsByClassName("source-image")[0];
+        imageEl.src = imageUrl;
+
+        let tableIndex = 1;
+        data.forEach((entry, i) => {
+            if(entry !== ""){
+                entry = decodeURIComponent(entry);
+                const title = ENTRY_TITLES[i];
+
+                tableEl.innerHTML += `
+                                    <tbody>
+                                    <tr>
+                                        <th class="table-index">${tableIndex}</th>
+                                        <th class="table-title">${title}</th>
+                                        <th class="table-data">${entry}</th>
+                                    </tr>
+                                    </tbody>
+                                    `;
+                                    
+                tableIndex++;
+            }
+        });
+    </script>
+</body>
+</html>
