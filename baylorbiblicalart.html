@@ -113,10 +113,14 @@
             display:inline-block;
             border-collapse:collapse;
             max-height:calc(100% - 176px);
+            max-width:calc(100% - 84px);
             box-shadow:-2px 2px 10px rgba(0, 0, 0, 0.7);
             overflow-y:scroll;
             background:#FFB81C;
             font-size:13px;
+            margin-left:42px;
+            margin-right:42px;
+            overflow-x:hidden;
         }
         .table-entries:hover{
             outline:2px solid #FFB81C;
@@ -134,7 +138,7 @@
         
         .table-index{
             position:relative;
-            width:40px;
+            min-width:40px;
             background:#0D2B20;
         }
         .table-index:after{
@@ -142,17 +146,18 @@
             display:block;
             position:absolute;
             height:100%;
-            width:2px;
+            min-width:2px;
             left:40px;
             top:0;
             background:#FFB81C;
         }
         .table-title{
-            width:200px;
+            min-width:200px;
             background:#154734;
         }
         .table-data{
-            width:300px;
+            /*min-width:300px;*/
+            max-width:300px;
             padding:10px;
             padding-left:20px;
             padding-right:20px;
